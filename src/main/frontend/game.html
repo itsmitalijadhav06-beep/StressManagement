@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Relaxation Puzzle Games 🎮</title>
+  <style>
+    /* ---------- General Layout ---------- */
+    body {
+      font-family: 'Segoe UI', Calibri, sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #a8edea, #fef6e4);
+      margin: 0;
+      padding: 20px;
+      color: #03396c;
+      min-height: 100vh;
+      overflow-x: hidden;
+      animation: fadeInBg 2s ease-in-out;
+    }
+
+    h1 {
+      color: #03396c;
+      margin-bottom: 8px;
+      font-size: 2.3em;
+      animation: fadeInDown 1s ease;
+    }
+
+    p {
+      color: #045b7f;
+      font-size: 1.1em;
+      animation: fadeInUp 1.2s ease;
+    }
+
+    button {
+      background: #1e88e5;
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px;
+      font-size: 16px;
+      transition: all 0.25s ease-in-out;
+      box-shadow: 0 4px 10px rgba(30, 136, 229, 0.3);
+      animation: floatUp 1.8s ease infinite alternate;
+    }
+
+    button:hover {
+      background: #1565c0;
+      transform: scale(1.08);
+      box-shadow: 0 6px 14px rgba(21, 101, 192, 0.4);
+    }
+
+    #gameArea {
+      margin-top: 30px;
+      animation: fadeIn 1.2s ease;
+    }
+
+    /* ---------- Sliding Puzzle ---------- */
+    .puzzle-container {
+      width: 300px;
+      height: 300px;
+      margin: 20px auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 5px;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 10px;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      animation: zoomIn 0.8s ease;
+    }
+
+    .tile {
+      background-color: #90caf9;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      color: #03396c;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+      animation: tileFade 0.5s ease;
+    }
+
+    .tile:hover {
+      background-color: #64b5f6;
+      transform: scale(1.08);
+    }
+
+    .empty {
+      background-color: transparent;
+      cursor: default;
+    }
+
+    /* ---------- Memory Game ---------- */
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 80px);
+      gap: 10px;
+      justify-content: center;
+      margin: 20px auto;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      animation: zoomIn 0.8s ease;
+    }
+
+    .card {
+      width: 80px;
+      height: 80px;
+      background-color: #1e88e5;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      transition: transform 0.4s ease, background 0.3s;
+      transform-style: preserve-3d;
+      animation: cardEntry 0.5s ease;
+    }
+
+    .card:hover {
+      transform: rotateY(10deg) scale(1.05);
+      background-color: #1565c0;
+    }
+
+    .matched {
+      background-color: #81d4fa !important;
+      color: #03396c;
+      font-weight: bold;
+      transform: scale(1.1);
+      animation: glow 1s ease infinite alternate;
+    }
+
+    /* ---------- Back Link ---------- */
+    a {
+      display: inline-block;
+      margin-top: 30px;
+      color: #045b7f;
+      text-decoration: none;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 8px 16px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(3, 57, 108, 0.1);
+      transition: all 0.3s ease;
+      animation: fadeInUp 1.4s ease;
+    }
+
+    a:hover {
+      background: #bbdefb;
+      transform: scale(1.05);
+    }
+
+    /* ---------- Animations ---------- */
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @keyframes fadeInDown {
+      from {opacity: 0; transform: translateY(-30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes zoomIn {
+      from {transform: scale(0.8); opacity: 0;}
+      to {transform: scale(1); opacity: 1;}
+    }
+
+    @keyframes fadeInBg {
+      from {background: #a8edea;}
+      to {background: linear-gradient(135deg, #a8edea, #fef6e4);}
+    }
+
+    @keyframes glow {
+      from {box-shadow: 0 0 10px #81d4fa;}
+      to {box-shadow: 0 0 20px #29b6f6;}
+    }
+
+    @keyframes floatUp {
+      from {transform: translateY(0);}
+      to {transform: translateY(-6px);}
+    }
+
+    @keyframes cardEntry {
+      from {opacity: 0; transform: scale(0.8);}
+      to {opacity: 1; transform: scale(1);}
+    }
+
+    @keyframes tileFade {
+      from {opacity: 0; transform: scale(0.9);}
+      to {opacity: 1; transform: scale(1);}
+    }
+  </style>
+</head>
+<body>
+  <h1>Relaxation Puzzle Games 🎮</h1>
+  <p>Enjoy calm, mind-refreshing puzzles designed to reduce stress 💙</p>
+
+  <button onclick="showSlidingPuzzle()">🧩 Sliding Puzzle</button>
+  <button onclick="showMemoryGame()">🎯 Memory Match</button>
+
+  <div id="gameArea"></div>
+
+  <a href="home.html">← Back to Home</a>
+
+  <script>
+    // -------- Sliding Puzzle --------
+    function showSlidingPuzzle() {
+      const gameArea = document.getElementById("gameArea");
+      gameArea.innerHTML = `
+        <h2 style="animation: fadeInDown 1s ease;">🧩 Sliding Puzzle</h2>
+        <div class="puzzle-container" id="puzzle"></div>
+        <p>Arrange the numbers in order (1–8)!</p>
+      `;
+
+      let tiles = [...Array(8).keys()].map(n => n + 1);
+      tiles.push("");
+      tiles.sort(() => Math.random() - 0.5);
+
+      const puzzle = document.getElementById("puzzle");
+      tiles.forEach(value => {
+        const div = document.createElement("div");
+        div.className = value ? "tile" : "tile empty";
+        div.textContent = value;
+        puzzle.appendChild(div);
+      });
+
+      puzzle.addEventListener("click", e => {
+        const tiles = Array.from(document.querySelectorAll(".tile"));
+        const index = tiles.indexOf(e.target);
+        const emptyIndex = tiles.findIndex(t => t.classList.contains("empty"));
+        const validMoves = [emptyIndex - 1, emptyIndex + 1, emptyIndex - 3, emptyIndex + 3];
+
+        if (validMoves.includes(index)) {
+          [tiles[index].textContent, tiles[emptyIndex].textContent] =
+            [tiles[emptyIndex].textContent, tiles[index].textContent];
+          tiles[index].classList.toggle("empty");
+          tiles[emptyIndex].classList.toggle("empty");
+        }
+
+        const current = tiles.map(t => t.textContent).slice(0, 8).join("");
+        if (current === "12345678") {
+          setTimeout(() => alert("🎉 Great job! You solved it!"), 300);
+        }
+      });
+    }
+
+    // -------- Memory Game --------
+    function showMemoryGame() {
+      const gameArea = document.getElementById("gameArea");
+      gameArea.innerHTML = `
+        <h2 style="animation: fadeInDown 1s ease;">🎯 Memory Match</h2>
+        <div class="memory-grid" id="memoryGrid"></div>
+        <p>Find all the matching pairs!</p>
+      `;
+
+      const emojis = ["🌸", "🍀", "🌞", "🍎", "🐠", "🎵", "🌻", "⭐"];
+      let cards = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
+      const grid = document.getElementById("memoryGrid");
+
+      cards.forEach(symbol => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.dataset.symbol = symbol;
+        grid.appendChild(card);
+      });
+
+      let flipped = [];
+      grid.addEventListener("click", e => {
+        const card = e.target;
+        if (!card.classList.contains("card") || card.classList.contains("matched")) return;
+
+        card.textContent = card.dataset.symbol;
+        card.style.transform = "rotateY(180deg) scale(1.1)";
+        flipped.push(card);
+
+        if (flipped.length === 2) {
+          const [a, b] = flipped;
+          if (a.dataset.symbol === b.dataset.symbol) {
+            a.classList.add("matched");
+            b.classList.add("matched");
+          } else {
+            setTimeout(() => {
+              a.textContent = "";
+              b.textContent = "";
+              a.style.transform = "rotateY(0deg)";
+              b.style.transform = "rotateY(0deg)";
+            }, 700);
+          }
+          flipped = [];
+        }
+
+        if (document.querySelectorAll(".matched").length === cards.length) {
+          setTimeout(() => alert("🌟 All pairs matched! Great work!"), 300);
+        }
+      });
+    }
+  </script>
+</body>
+</html>

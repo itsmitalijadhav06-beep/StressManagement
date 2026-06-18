@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Personalized Stress Suggestions</title>
+<style>
+body { font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #c2f0ff, #e0fff6); display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+.container { background-color: white; padding: 30px; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); text-align: center; width: 430px; }
+h1 { color: #004c99; margin-bottom: 15px; }
+h3 { color: #0056b3; margin: 10px 0; }
+p { color: #333; font-size: 15px; margin: 6px 0; }
+ul { text-align: left; margin-top: 10px; margin-left: 40px; color: #333; }
+.music-section { background-color: #f8fcff; border-radius: 12px; padding: 10px; margin-top: 15px; box-shadow: 0 0 8px rgba(0,0,0,0.1); }
+.music-section a { display: block; text-decoration: none; color: #004c99; margin: 5px 0; transition: color 0.2s; }
+.music-section a:hover { color: #0074cc; text-decoration: underline; }
+button { background-color: #0074cc; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; margin: 10px 8px; font-size: 15px; display: inline-flex; align-items: center; gap: 5px; }
+button:hover { background-color: #005fa3; }
+a { color: #004c99; text-decoration: none; font-weight: bold; }
+a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Personalized Stress Suggestions</h1>
+<h3>Your Stress Score: <span id="stressScore"></span></h3>
+<p>Stress Level: <span id="stressLevel"></span></p>
+<p>Mood: <span id="mood"></span></p>
+<p id="message"></p>
+<ul id="suggestionsList"></ul>
+<div class="music-section" id="musicSection">
+<h3>🎶 Calming Music Suggestions</h3>
+<div id="musicLinks"></div>
+</div>
+<div>
+<button onclick="window.location.href='home.html'">🏠 Home</button>
+<button onclick="window.location.href='login.html'">📘 Logout</button>
+</div>
+<p><a href="History.html">📜 View Your Stress History</a></p>
+</div>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const score = urlParams.get('score') || "Not Available";
+const level = urlParams.get('level') || "unknown";
+const mood = urlParams.get('mood') || "Not specified";
+
+document.getElementById("stressScore").textContent = score + (score !== "Not Available" ? "/10" : "");
+document.getElementById("stressLevel").textContent = level.charAt(0).toUpperCase() + level.slice(1);
+document.getElementById("mood").textContent = decodeURIComponent(mood);
+
+const messageElement = document.getElementById("message");
+const suggestionsList = document.getElementById("suggestionsList");
+const musicLinks = document.getElementById("musicLinks");
+
+switch(level.toLowerCase()) {
+    case "high":
+        messageElement.textContent = "You seem quite stressed. Take some time to relax and unwind.";
+        suggestionsList.innerHTML = `<li>Practice meditation or yoga.</li>
+                                     <li>Take deep breaths for 5 minutes.</li>
+                                     <li>Go for a short walk in nature.</li>
+                                     <li>Talk to someone you trust.</li>`;
+        musicLinks.innerHTML = `<a href="https://youtu.be/1ZYbU82GVz4" target="_blank">🌿 Relaxing Piano Music</a>
+                                <a href="https://youtu.be/2OEL4P1Rz04" target="_blank">🌊 Ocean Waves & Rain Sounds</a>
+                                <a href="https://youtu.be/1z3LEjZOM8w" target="_blank">🕊️ Calm Mind Meditation Music</a>`;
+        break;
+    case "moderate":
+        messageElement.textContent = "You’re managing okay, but some relaxation will help.";
+        suggestionsList.innerHTML = `<li>Do breathing exercises.</li>
+                                     <li>Listen to soft or acoustic music.</li>
+                                     <li>Spend time with loved ones.</li>`;
+        musicLinks.innerHTML = `<a href="https://youtu.be/MkNeIUgNPQ8" target="_blank">☀️ Acoustic Chill Vibes</a>
+                                <a href="https://youtu.be/lFcSrYw-ARY" target="_blank">🌸 Gentle Guitar & Ambient Tunes</a>`;
+        break;
+    case "low":
+        messageElement.textContent = "You seem relaxed. Keep up your positive habits!";
+        suggestionsList.innerHTML = `<li>Maintain your healthy balance.</li>
+                                     <li>Continue with mindfulness activities.</li>`;
+        musicLinks.innerHTML = `<a href="https://youtu.be/eKFTSSKCzWA" target="_blank">🌼 Calm Lofi Beats</a>
+                                <a href="https://youtu.be/5qap5aO4i9A" target="_blank">☕ Lofi Girl 24/7 Radio</a>`;
+        break;
+    default:
+        messageElement.textContent = "Unable to determine stress level.";
+        suggestionsList.innerHTML = "<li>Please retake the survey.</li>";
+        musicLinks.innerHTML = `<a href="https://youtu.be/2OEL4P1Rz04" target="_blank">🎧 Relaxing Nature Sounds</a>`;
+}
+</script>
+</body>
+</html>

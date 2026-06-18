@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logout</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body style="background-color: #e3f2fd; text-align: center; font-family: Arial, sans-serif; margin-top: 150px;">
+    <h1 style="color: #0277bd;">You’ve Logged Out</h1>
+    <p style="font-size: 18px; color: #01579b;">Log in whenever you feel anxious — we’re here to help you relax.</p>
+    <a href="index.html" style="display: inline-block; margin-top: 30px; padding: 10px 20px; background-color: #0288d1; color: white; text-decoration: none; border-radius: 8px;">Login Again</a>
+
+    <script>
+        // Clear session data on logout
+        sessionStorage.clear();
+        localStorage.clear();
+    </script>
+</body>
+</html>

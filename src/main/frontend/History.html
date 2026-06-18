@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Stress History</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Calibri, sans-serif;
+      background: linear-gradient(to bottom right, #e3f2fd, #ffffff);
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .history-card {
+      max-width: 700px;
+      margin: 60px auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      padding: 30px 40px;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      text-align: center;
+      color: #005f99;
+      margin-bottom: 25px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #0077cc;
+      color: white;
+      font-weight: bold;
+    }
+
+    tr:hover {
+      background-color: #f1f9ff;
+    }
+
+    .no-data {
+      text-align: center;
+      font-size: 18px;
+      color: #666;
+      margin-top: 20px;
+      font-style: italic;
+    }
+
+    .home-link {
+      text-align: center;
+      margin-top: 25px;
+    }
+
+    .home-link a {
+      color: #005fa3;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .home-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="history-card">
+    <h1>📜 Your Stress History</h1>
+    <div id="historyContainer"></div>
+    <div class="home-link">
+      <a href="home.html">← Back to Home</a>
+    </div>
+  </div>
+
+  <script>
+    // Load survey history safely
+    const historyContainer = document.getElementById("historyContainer");
+
+    let historyData = [];
+    try {
+      const stored = localStorage.getItem("surveyHistory");
+      if (stored) historyData = JSON.parse(stored);
+    } catch (error) {
+      console.error("Error parsing history data:", error);
+    }
+
+    if (historyData && historyData.length > 0) {
+      let tableHTML = `
+        <table>
+          <tr>
+            <th>Date & Time</th>
+            <th>Stress Level</th>
+            <th>Mood</th>
+            <th>Score</th>
+          </tr>
+      `;
+
+      historyData.forEach(entry => {
+        const date = entry.date ? entry.date : "Not Available";
+        const level = entry.level ? entry.level : "Unknown";
+        const mood = entry.mood ? entry.mood : "N/A";
+        const score = entry.score !== undefined ? entry.score : "-";
+
+        tableHTML += `
+          <tr>
+            <td>${date}</td>
+            <td>${level}</td>
+            <td>${mood}</td>
+            <td>${score}</td>
+          </tr>
+        `;
+      });
+
+      tableHTML += "</table>";
+      historyContainer.innerHTML = tableHTML;
+    } else {
+      historyContainer.innerHTML = `<p class="no-data">No survey history found yet. 🧘‍♀️</p>`;
+    }
+  </script>
+</body>
+</html>

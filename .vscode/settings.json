@@ -1,0 +1,7 @@
+{
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.project.referencedLibraries" : [
+        "C:\\Users\\Mitali\\Desktop\\Vscode\\Web application\\StressManagementWEBApplicaton\\backend\\src\\main\\WebApp\\WEB -INF\\lib\\ojdbc17.jar",
+        
+    ],
+}

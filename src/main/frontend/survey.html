@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stress Management Survey</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Calibri, sans-serif;
+      background: linear-gradient(to bottom right, #eaf6ff, #d4f1f9);
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .survey-card {
+      background-color: #fff;
+      max-width: 650px;
+      margin: 60px auto;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.6s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h1 {
+      text-align: center;
+      color: #005f99;
+      margin-bottom: 25px;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #333;
+    }
+    .question { margin-bottom: 22px; }
+    select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      background-color: #f8f9fa;
+    }
+    button {
+      display: block;
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 12px 25px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin: 25px auto 0;
+    }
+    button:hover { background-color: #005fa3; }
+    .home-link { text-align: center; margin-top: 25px; }
+    .home-link a {
+      color: #005fa3;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .home-link a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="survey-card">
+    <h1>🧘‍♀ Stress Management Survey</h1>
+
+    <form method="POST" action="StressServlet?action=survey">
+      <!-- 10 agree/disagree questions -->
+      <div class="question"><label>1️⃣ I have poor dietary choices when stressed.</label>
+        <select name="q1" required><option value="">Select</option><option value="Agree">Agree</option><option value="Disagree">Disagree</option></select>
+      </div>
+      <div class="question"><label>2️⃣ I either don’t get adequate sleep or I oversleep.</label>
+        <select name="q2" required><option value="">Select</option><option value="Agree">Agree</option><option value="Disagree">Disagree</option></select>
+      </div>
+      <div class="question"><label>3️⃣ I sometimes overexercise.</label>
+        <select name="q3" required><option value="">Select</option><option value="Agree">Agree</option><option value="Disagree">Disagree</option></select>
+      </div>
+      <div class="question"><label>4️⃣ I don’t have a network of friends and family I can rely on.</label>
+        <select name="q4" required><option value="">Select</option><option value="Agree">Agree</option><option value="Disagree">Disagree</option></select>
+      </div>
+      <div class="question"><label>5️⃣ I am unable to communicate clearly when angry or stressed.</label>
+        <select name="q5" required><option value="">Select</option><option value="Agree">Agree</option><option value="Disagree">Disagree</option></select>
+      </div>
+      <div class="question"><label>6️⃣ I don’t usually do something fun once a week.</label>
+        <select name="q6" required><option value="">Select</option><option value="Agree">Agree</option><option value="Disagree">Disagree</option></select>
+      </div>
+      <div class="question"><label>7️⃣ I don’t take quiet time for myself.</label>
+        <select name="q7" required><option value="">Select</option><option value="Agree">Agree</option><option value="Disagree">Disagree</option></select>
+      </div>
+      <div class="question"><label>8️⃣ I worry about my income or future.</label>
+        <select name="q8" required><option value="">Select</option><option value="Agree">Agree</option><option value="Disagree">Disagree</option></select>
+      </div>
+      <div class="question"><label>9️⃣ I am not calm in traffic or when I feel stuck.</label>
+        <select name="q9" required><option value="">Select</option><option value="Agree">Agree</option><option value="Disagree">Disagree</option></select>
+      </div>
+      <div class="question"><label>🔟 I don’t feel organized and in control.</label>
+        <select name="q10" required><option value="">Select</option><option value="Agree">Agree</option><option value="Disagree">Disagree</option></select>
+      </div>
+
+      <div class="question">
+        <label>💭 What best describes your current mood?</label>
+        <select name="mood" required>
+          <option value="">Select one</option>
+          <option>Calm</option><option>Neutral</option><option>Stressed</option>
+          <option>Anxious</option><option>Happy</option>
+        </select>
+      </div>
+
+      <button type="submit">Submit Survey</button>
+    </form>
+
+    <div class="home-link"><a href="home.html">← Back to Home</a></div>
+  </div>
+</body>
+</html>

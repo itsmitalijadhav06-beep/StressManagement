@@ -1,0 +1,87 @@
+/* Reset and base styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f0f4f8;
+  color: #333;
+  text-align: center;
+}
+
+/* Headings */
+h1, h2 {
+  color: #005f99;
+  margin-top: 20px;
+}
+
+/* Forms */
+form {
+  background-color: #ffffff;
+  padding: 20px;
+  margin: 30px auto;
+  max-width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+select {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Buttons */
+button {
+  background-color: #0077cc;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005fa3;
+}
+
+/* Links */
+a {
+  color: #0077cc;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Survey and Game Elements */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#circle {
+  font-size: 60px;
+  cursor: pointer;
+  margin: 30px auto;
+  display: inline-block;
+}
+
+#message {
+  font-size: 18px;
+  margin-top: 20px;
+  color: #008000;
+}
