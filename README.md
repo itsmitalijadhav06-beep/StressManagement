@@ -93,4 +93,3 @@ The platform includes interactive relaxation games to help users reduce stress:
 <img width="1269" height="791" alt="WhatsApp Image 2026-06-19 at 13 18 19 (3)" src="https://github.com/user-attachments/assets/279d356b-aa27-41cc-a0b5-8e411c42bd3a" />
 <img width="1280" height="770" alt="WhatsApp Image 2026-06-19 at 13 18 19" src="https://github.com/user-attachments/assets/67e1eaa5-83ad-465a-bd91-68706435aec5" />
 <img width="784" height="875" alt="WhatsApp Image 2026-06-19 at 13 18 20" src="https://github.com/user-attachments/assets/02ea028a-ab55-4258-b649-76d6172c7f6d" />
-<img width="727" height="339" alt="WhatsApp Image 2026-06-19 at 16 36 48" src="https://github.com/user-attachments/assets/046ac920-89d0-49f6-9e6d-c49724554f59" />
